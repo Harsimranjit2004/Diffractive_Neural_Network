@@ -1,0 +1,15 @@
+# Ignore Python virtual environment
+env/
+
+
+
+data/
+*.npy
+*.npz
+*.h5
+*.pkl
+*.gz
+*.csv
+*.log
+
+
