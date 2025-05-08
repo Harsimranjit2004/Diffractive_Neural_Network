@@ -14,15 +14,7 @@ def numerical_gradient(model: D2NN,
                       input_field: np.ndarray, 
                       target_class: int,
                       epsilon: float = 0.01) -> None:
-    """
-    Compute numerical gradients for each layer's phase values
-    
-    Args:
-        model: D2NN model
-        input_field: Input optical field
-        target_class: Target class index
-        epsilon: Small perturbation for finite difference
-    """
+
     # Base loss
     base_loss, _ = model.loss_and_gradient(input_field, target_class)
     
@@ -59,21 +51,7 @@ def train_model(model: D2NN,
                batch_size: int = 1,
                epochs: int = 10,
                eval_interval: int = 10) -> Dict[str, List]:
-    """
-    Train the D2NN model using numerical gradient descent
-    
-    Args:
-        model: D2NN model
-        X_train: Training images [n_samples, height, width]
-        y_train: Training labels [n_samples]
-        learning_rate: Learning rate for gradient descent
-        batch_size: Batch size (mini-batch stochastic gradient descent)
-        epochs: Number of training epochs
-        eval_interval: Interval for evaluation and reporting
-        
-    Returns:
-        Dictionary with training history
-    """
+
     n_samples = len(X_train)
     n_batches = int(np.ceil(n_samples / batch_size))
     
@@ -143,17 +121,7 @@ def train_model(model: D2NN,
 def evaluate_model(model: D2NN, 
                   X_test: np.ndarray, 
                   y_test: np.ndarray) -> Dict[str, float]:
-    """
-    Evaluate the D2NN model on test data
-    
-    Args:
-        model: D2NN model
-        X_test: Test images [n_samples, height, width]
-        y_test: Test labels [n_samples]
-        
-    Returns:
-        Dictionary with evaluation metrics
-    """
+
     n_samples = len(X_test)
     test_loss = 0
     correct = 0
@@ -187,15 +155,7 @@ def evaluate_model(model: D2NN,
 
 
 def plot_training_history(history: Dict[str, List]) -> plt.Figure:
-    """
-    Plot training history
-    
-    Args:
-        history: Training history dictionary
-        
-    Returns:
-        Matplotlib figure
-    """
+
     fig, (ax1, ax2) = plt.subplots(1, 2, figsize=(12, 5))
     
     # Plot loss
@@ -220,18 +180,7 @@ def visualize_classification(model: D2NN,
                            X: np.ndarray, 
                            y: int, 
                            figsize: Tuple[int, int] = (12, 10)) -> plt.Figure:
-    """
-    Visualize classification result and intermediate fields
-    
-    Args:
-        model: D2NN model
-        X: Input image
-        y: True label
-        figsize: Figure size
-        
-    Returns:
-        Matplotlib figure
-    """
+
     # Convert image to input field
     input_field = image_to_field(X)
     
